@@ -1,3 +1,4 @@
+using BethanysPieShop.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,7 +16,14 @@ namespace BethanysPieShop
         public void ConfigureServices(IServiceCollection services)
         {
             //Registering services through Dependency Injection container
-            
+
+            // Register the service with it's interface
+            // With add scoped an instance is created at each call and remains until it is out of scope
+            services.AddScoped<IPieRepository, MockPieRepository>();
+            services.AddScoped<ICategoryRepository, MockCategoryRepository>();
+
+           
+
             //Adding support for MVC
             services.AddControllersWithViews();
         }
