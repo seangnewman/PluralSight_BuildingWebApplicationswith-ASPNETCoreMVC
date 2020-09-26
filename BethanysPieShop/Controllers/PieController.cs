@@ -15,6 +15,8 @@ namespace BethanysPieShop.Controllers
         private readonly IPieRepository _pieRepository;
         private readonly ICategoryRepository _categoryRepository;
 
+        public ICategoryRepository CategoryRepository => _categoryRepository;
+
         public PieController(IPieRepository pieRepository,  ICategoryRepository categoryRepository)
         {
             _pieRepository = pieRepository;
@@ -25,9 +27,11 @@ namespace BethanysPieShop.Controllers
         {
             // ViewBag.CurrentCategory = "Cheese Cakes";
 
-            PiesListViewModel piesListViewModel = new PiesListViewModel();
-            piesListViewModel.Pies = _pieRepository.AllPies;
-            piesListViewModel.CurrentCategory = "Cheese Cakes!";
+            PiesListViewModel piesListViewModel = new PiesListViewModel
+            {
+                Pies = _pieRepository.AllPies,
+                CurrentCategory = "Cheese Cakes!"
+            };
 
             return View(piesListViewModel);
         }
