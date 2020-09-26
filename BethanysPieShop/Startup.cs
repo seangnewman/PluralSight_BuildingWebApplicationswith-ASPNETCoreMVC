@@ -59,10 +59,9 @@ namespace BethanysPieShop
             // Serve static files  
             app.UseStaticFiles();
 
-
-
+            // UseRouting and UseEndpoints middleware enable convention based built-in routing
             app.UseRouting();
-
+ 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
