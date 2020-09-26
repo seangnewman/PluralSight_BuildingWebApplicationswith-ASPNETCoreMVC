@@ -12,6 +12,7 @@ namespace BethanysPieShop.Models
         // Which resources are to be managed?
         public DbSet<Pie> Pies { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

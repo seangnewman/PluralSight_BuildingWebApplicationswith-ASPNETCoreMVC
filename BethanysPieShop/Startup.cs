@@ -36,6 +36,12 @@ namespace BethanysPieShop
             services.AddScoped<IPieRepository, PieRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
 
+            //When user comes to site, the Shopping cart is now associated with the user
+            services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+            // Return information regarding the HttpContext and session
+            services.AddHttpContextAccessor();
+             services.AddSession();
+
 
 
             //Adding support for MVC 
@@ -58,6 +64,9 @@ namespace BethanysPieShop
             app.UseHttpsRedirection();
             // Serve static files  
             app.UseStaticFiles();
+            // Middleware required to support retrieving session information
+            // Must be called before UseRouting()
+            app.UseSession();
 
             // UseRouting and UseEndpoints middleware enable convention based built-in routing
             app.UseRouting();
